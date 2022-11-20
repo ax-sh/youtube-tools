@@ -51,11 +51,11 @@ wl_json_path = path / 'watchlater.json'
 
 
 def start():
-    o = wl_json_path.read_json()
-    print(o.keys(), o['title'], )
-    pprint(o['entries'][0])
+    # o = wl_json_path.read_json()
+    # print(o.keys(), o['title'], )
+    # pprint(o['entries'][0])
 
-    # yt = YoutubeTools()
-    # info = yt.watch_later()
-    # print(info)
-    # wl_json_path.write_json(info)
+    yt = YoutubeTools()
+    info = yt.watch_later()
+    print(info)
+    wl_json_path.write_json(info)
