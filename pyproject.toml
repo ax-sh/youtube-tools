@@ -14,3 +14,7 @@ yt-dlp = "^2022.11.11"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+dev = "youtube_tools.main:start"
