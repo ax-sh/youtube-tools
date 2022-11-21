@@ -4,6 +4,7 @@ from yt_dlp import YoutubeDL
 import json
 
 from pathlib import Path
+from requests import Session
 
 
 def write_json(self, data):
@@ -49,37 +50,41 @@ class YoutubeTools:
 path = Path(__file__).parent
 wl_json_path = path / 'watchlater.json'
 
+client = Session()
+DOMAIN = 'http://127.0.0.1:8090'
+
 
 def process_local():
     o = wl_json_path.read_json()
     # print(o.keys(), o['title'], )
     for i in o['entries']:
+        if (not i):
+            print('shhh', i)
+            continue
         data = {
-            "title": i['title'],
-            "language": i['title'],
+            "title": i.get('title', ''),
+            "language": 'en',
             "channel": i['channel'],
-            "like_count": i['like_count'],
+            "like_count": i.get('like_count', 0),
             "view_count": i['view_count'],
             "original_url": i['original_url'],
             "availability": i['availability'],
-            "upload_date":  i['upload_date'],
+            # "upload_date":  i['upload_date'],
             "duration": i['duration_string']
         }
         # pprint(list(i.keys()))
         print(
             i['resolution'],
-
             i['description'],
-
-
-
-
             i['channel_follower_count'],
-
             i['release_timestamp'],
             i['chapters'],
             sep=" ____\n---- ")
-        break
+
+        req = client.post(
+            DOMAIN + '/api/collections/watch_later/records', json=data)
+        print(req)
+        # break
 
 
 def start():
