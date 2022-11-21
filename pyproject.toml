@@ -9,6 +9,7 @@ packages = [{include = "youtube_tools"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 yt-dlp = "^2022.11.11"
+requests = "^2.28.1"
 
 
 [build-system]
