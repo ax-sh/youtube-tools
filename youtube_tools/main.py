@@ -54,23 +54,31 @@ def process_local():
     o = wl_json_path.read_json()
     # print(o.keys(), o['title'], )
     for i in o['entries']:
-        pprint(list(i.keys()))
-        print(i['language'],
-              i['resolution'],
-              i['title'],
-              i['description'],
-              i['view_count'],
-              i['like_count'],
-              i['duration_string'],
-              i['original_url'],
-              i['availability'],
-              i['upload_date'],
-              i['channel_follower_count'],
-              i['like_count'],
-              i['channel'],
-              i['release_timestamp'],
-              i['chapters'],
-              sep=" | ")
+        data = {
+            "title": i['title'],
+            "language": i['title'],
+            "channel": i['channel'],
+            "like_count": i['like_count'],
+            "view_count": i['view_count'],
+            "original_url": i['original_url'],
+            "availability": i['availability'],
+            "upload_date":  i['upload_date'],
+            "duration": i['duration_string']
+        }
+        # pprint(list(i.keys()))
+        print(
+            i['resolution'],
+
+            i['description'],
+
+
+
+
+            i['channel_follower_count'],
+
+            i['release_timestamp'],
+            i['chapters'],
+            sep=" ____\n---- ")
         break
 
 
