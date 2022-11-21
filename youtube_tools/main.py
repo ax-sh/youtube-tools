@@ -21,7 +21,7 @@ Path.read_json = read_json
 
 
 CONFIG = {
-    "ignore_errors": True,
+    "ignoreerrors": True,
     "verbose": True,
     "debug": True,
     'yes-playlist': True,
@@ -50,12 +50,34 @@ path = Path(__file__).parent
 wl_json_path = path / 'watchlater.json'
 
 
-def start():
-    # o = wl_json_path.read_json()
+def process_local():
+    o = wl_json_path.read_json()
     # print(o.keys(), o['title'], )
-    # pprint(o['entries'][0])
+    for i in o['entries']:
+        pprint(list(i.keys()))
+        print(i['language'],
+              i['resolution'],
+              i['title'],
+              i['description'],
+              i['view_count'],
+              i['like_count'],
+              i['duration_string'],
+              i['original_url'],
+              i['availability'],
+              i['upload_date'],
+              i['channel_follower_count'],
+              i['like_count'],
+              i['channel'],
+              i['release_timestamp'],
+              i['chapters'],
+              sep=" | ")
+        break
 
-    yt = YoutubeTools()
-    info = yt.watch_later()
-    print(info)
-    wl_json_path.write_json(info)
+
+def start():
+    process_local()
+
+    # yt = YoutubeTools()
+    # info = yt.watch_later()
+    # print(info)
+    # wl_json_path.write_json(info)
