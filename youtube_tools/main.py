@@ -1,24 +1,12 @@
 from pprint import pprint
 
 from yt_dlp import YoutubeDL
-import json
+from .utils import path
 
 from pathlib import Path
 from requests import Session
 
 
-def write_json(self, data):
-    with self.open('w', encoding='utf-8') as w:
-        json.dump(data, w)
-
-
-def read_json(self):
-    with self.open('r', encoding='utf-8') as r:
-        return json.load(r)
-
-
-Path.write_json = write_json
-Path.read_json = read_json
 
 
 CONFIG = {
@@ -47,7 +35,7 @@ class YoutubeTools:
         return self.youtube_dl.extract_info(self.WATCH_LATER_URL, download=False)
 
 
-path = Path(__file__).parent
+
 wl_json_path = path / 'watchlater.json'
 
 client = Session()
